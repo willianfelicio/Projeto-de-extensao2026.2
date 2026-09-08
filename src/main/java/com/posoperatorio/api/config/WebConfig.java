@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "https://seu-frontend-hospedado.vercel.app" // Substitua pela URL real do Front-end em produção
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
