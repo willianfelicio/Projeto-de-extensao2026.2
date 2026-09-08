@@ -10,7 +10,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:3000",                  // Para desenvolvimento local (ex: React)
+                        "http://localhost:5173",                  // Para desenvolvimento local (ex: Vite)
+                        "https://seu-frontend-hospedado.vercel.app" // Substitua pela URL real do Front-end em produção
+                )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
