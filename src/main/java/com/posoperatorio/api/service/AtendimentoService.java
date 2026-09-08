@@ -19,41 +19,40 @@ public class AtendimentoService {
     private final PacienteRepository pacienteRepository;
     private final ProcedimentoRepository procedimentoRepository;
 
-    //Inclusão de Repositórios necessarios para associar paciente e procedimento
-
     public AtendimentoService(AtendimentoRepository atendimentoRepository,
                               PacienteRepository pacienteRepository,
-                              ProcedimentoRepository procedimentoRepository){
+                              ProcedimentoRepository procedimentoRepository) {
         this.atendimentoRepository = atendimentoRepository;
         this.pacienteRepository = pacienteRepository;
         this.procedimentoRepository = procedimentoRepository;
     }
-    public List<Atendimento> listarTodos(){
+
+    public List<Atendimento> listarTodos() {
         return atendimentoRepository.findAll();
     }
-    public Optional<Atendimento> buscarPorId(long id){
+
+    public Optional<Atendimento> buscarPorId(Long id) {
         return atendimentoRepository.findById(id);
     }
 
     public Atendimento salvar(AtendimentoDTO dto) {
         Paciente paciente = pacienteRepository.findById(dto.pacienteId())
-                .orElseThrow(() -> new RuntimeExeption("Paciente não encontrado com ID: " + dto.pacienteId()));
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado com ID: " + dto.pacienteId()));
 
-        Procedimento salvar (ProcedimentoDTO dto)
         Procedimento procedimento = procedimentoRepository.findById(dto.procedimentoId())
-                .orElseThrow(() -> new RuntimeExeption("Procedimento não encontrado com ID: " + dto.procedimentoId()));
+                .orElseThrow(() -> new RuntimeException("Procedimento não encontrado com ID: " + dto.procedimentoId()));
 
         Atendimento atendimento = new Atendimento();
         atendimento.setDataHora(dto.dataHora());
-        atendimento.setObrservacoes(dto.observacoes());
+        atendimento.setObservacoes(dto.observacoes()); // Corrigido setObservacoes
         atendimento.setStatus(dto.status() != null ? dto.status() : "AGENDADO");
         atendimento.setPaciente(paciente);
         atendimento.setProcedimento(procedimento);
 
         return atendimentoRepository.save(atendimento);
-        }
+    }
 
-        public void deletar(Long id){
+    public void deletar(Long id) {
         atendimentoRepository.deleteById(id);
     }
 }

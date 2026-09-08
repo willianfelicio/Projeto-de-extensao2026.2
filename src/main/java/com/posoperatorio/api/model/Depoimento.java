@@ -1,9 +1,9 @@
 package com.posoperatorio.api.model;
 
-import jakara.persistence.*;
+import jakarta.persistence.*; // Corrigido (era jakara.persistence.*)
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -15,12 +15,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Depoimento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "O texto do depoimento é obrigatório")
-    @Column(nullable = false, length igual a 1000)
+    @Column(nullable = false, length = 1000)
     private String texto;
 
     @NotNull(message = "A nota é obrigatória")
@@ -31,5 +32,4 @@ public class Depoimento {
     @ManyToOne
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
-
 }

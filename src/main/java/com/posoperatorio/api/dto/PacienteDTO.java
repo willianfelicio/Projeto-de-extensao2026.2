@@ -18,7 +18,7 @@
         @Email(message = "Informe um e-mail válido")
         String email,
 
-        String telefone,
+        String telefone
         ){}
 
 
