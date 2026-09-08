@@ -36,5 +36,7 @@ public class Paciente {
     private String email;
 
     private String telefone; //Campo simples, sem registro direto no banco e permite valor nulo
+
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento; //Data de nascimento no formato ISO (YYYY-MM-DD)
 }
