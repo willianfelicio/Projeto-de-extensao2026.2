@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController // Expõe a classe como um controlador REST
 @RequestMapping("/atendimentos") // Define caminho base para os endpoints
+@CrossOrigin(origins = "http://localhost:5173")
 public class AtendimentoController {
 
     private final AtendimentoService atendimentoService;
