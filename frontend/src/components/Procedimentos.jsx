@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Stethoscope, Users, HeartPulse, ChevronUp, ChevronDown } from 'lucide-react';
 
 export default function Atendimentos() {
-  const [expandCard1, setExpandCard1] = useState(true);
-  const [expandCard3, setExpandCard3] = useState(true);
+  // Estados iniciando como false para os cards começarem fechados
+  const [expandCard1, setExpandCard1] = useState(false);
+  const [expandCard3, setExpandCard3] = useState(false);
 
   const itensCard1 = [
     "Avaliação e acompanhamento pré-operatório",
@@ -73,14 +74,16 @@ export default function Atendimentos() {
               Acompanhamento especializado e individualizado para pacientes de cirurgia plástica, com foco em segurança, conforto, recuperação e prevenção de complicações.
             </p>
 
-            {/* Botão Ver mais / Ver menos */}
-            <button
-              onClick={() => setExpandCard1(!expandCard1)}
-              className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#5B63D3] hover:text-[#464cc4] transition-colors pt-1"
-            >
-              <span>{expandCard1 ? "Ver menos" : "Ver mais"}</span>
-              {expandCard1 ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-            </button>
+            {/* Botão Ver mais (Estilo Pílula) */}
+            <div>
+              <button
+                onClick={() => setExpandCard1(!expandCard1)}
+                className="inline-flex items-center gap-1.5 bg-[#F2F0FF] text-[#5B63D3] px-3.5 py-1.5 rounded-full text-[11px] font-medium hover:bg-[#e6e2ff] transition-colors"
+              >
+                <span>{expandCard1 ? "Ver menos" : "Ver mais"}</span>
+                {expandCard1 ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </button>
+            </div>
 
             {/* Lista com Bullet Points */}
             {expandCard1 && (
@@ -125,7 +128,7 @@ export default function Atendimentos() {
               Cuidados de Enfermagem Personalizados
             </h3>
 
-            {/* Pill/Botão Ver menos */}
+            {/* Botão Ver mais (Estilo Pílula) */}
             <div>
               <button
                 onClick={() => setExpandCard3(!expandCard3)}
