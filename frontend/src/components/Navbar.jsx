@@ -1,41 +1,34 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import { Heart } from 'lucide-react';
+import logo from '../assets/logo.png'; // Confirma o nome do ficheiro do teu logótipo
 
 export default function Navbar() {
   return (
-    <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo e Nome */}
+    <header className="w-full bg-[#FDFBFD]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
+        {/* Logótipo */}
         <div className="flex items-center gap-3">
-          <img 
-            src={logo} 
-            alt="Logo Gabriela Yaryd" 
-            className="h-10 w-auto object-contain"
-          />
-          <span className="font-semibold text-slate-800 text-sm tracking-wide uppercase">
-            ENFA. GABRIELA YARYD
-          </span>
+          <img src={logo} alt="Enfa. Gabriela Yaryd" className="h-10 w-auto object-contain" />
         </div>
 
         {/* Links de Navegação */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <a href="#inicio" className="hover:text-purple-700 transition-colors">Início</a>
-          <a href="#sobre" className="hover:text-purple-700 transition-colors">Sobre</a>
-          <a href="#atendimentos" className="hover:text-purple-700 transition-colors">Atendimentos</a>
-          <a href="#como-funciona" className="hover:text-purple-700 transition-colors">Como Funciona</a>
-          <a href="#depoimentos" className="hover:text-purple-700 transition-colors">Depoimentos</a>
-          <a href="#contato" className="hover:text-purple-700 transition-colors">Contato</a>
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium text-slate-500">
+          <a href="#inicio" className="hover:text-slate-900 transition-colors">Início</a>
+          <a href="#sobre" className="hover:text-slate-900 transition-colors">Sobre</a>
+          <a href="#atendimentos" className="hover:text-slate-900 transition-colors">Atendimentos</a>
+          <a href="#como-funciona" className="hover:text-slate-900 transition-colors">Como funciona</a>
+          <a href="#depoimentos" className="hover:text-slate-900 transition-colors">Depoimentos</a>
+          <a href="#contato" className="hover:text-slate-900 transition-colors">Contato</a>
         </nav>
 
-        {/* Botão de Destaque */}
-        <div>
-          <a
-            href="#agendamento"
-            className="inline-flex items-center gap-2 border border-purple-600 text-purple-700 hover:bg-purple-700 hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300"
-          >
-            <span>Solicitar atendimento</span>
-          </a>
-        </div>
+        {/* Botão do Canto Superior Direito */}
+        <a
+          href="#contato"
+          className="inline-flex items-center gap-2 bg-[#5B63D3] hover:bg-[#4a51be] text-white text-xs font-medium px-5 py-2.5 rounded-full shadow-sm transition-all"
+        >
+          <Heart className="w-3.5 h-3.5 stroke-[2]" />
+          <span>Solicitar atendimento</span>
+        </a>
       </div>
     </header>
   );

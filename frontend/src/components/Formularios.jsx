@@ -52,7 +52,34 @@ export default function Formularios() {
     <section id="contato" className="py-20 bg-slate-50">
       <div className="max-w-3xl mx-auto px-6">
         
-        <div className="text-center mb-12">
+        {/* SEÇÃO ADICIONADA (BANNER SUPERIOR DA IMAGEM) */}
+        <div className="text-center mb-16 space-y-6">
+          <div className="inline-flex items-center justify-center gap-1.5 text-purple-600 font-serif italic text-base">
+            <span>♡</span>
+            <span>Vamos conversar?</span>
+          </div>
+
+          <h1 className="font-serif text-3xl md:text-5xl text-slate-800 leading-tight">
+            Pronta para cuidar de você em cada etapa da sua recuperação.
+          </h1>
+
+          <p className="text-xs md:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
+            Solicite seu atendimento e receba um cuidado individualizado, seguro e acolhedor.
+          </p>
+
+          <div>
+            <a
+              href="#formulario-card"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-xs font-semibold px-7 py-3 rounded-full shadow-md shadow-purple-200 hover:opacity-95 transition-all"
+            >
+              <span>Solicitar atendimento</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* CÓDIGO ORIGINAL DO FORMULÁRIO (MANTIDO 100% INTACTO) */}
+        <div id="formulario-card" className="text-center mb-12">
           <span className="text-xs font-bold uppercase tracking-widest text-purple-700 bg-purple-50 px-3 py-1 rounded-full">
             SOLICITAR ATENDIMENTO
           </span>

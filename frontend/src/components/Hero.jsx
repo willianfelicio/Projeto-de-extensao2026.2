@@ -1,68 +1,88 @@
 import React from 'react';
-import fotoHero from '../assets/gabriela-hero.png';
+import { Heart, ArrowRight, Sparkles } from 'lucide-react';
+import heroImg from '../assets/gabriela-hero.png'; // Confirma o nome do ficheiro da foto
 
-export default function Hero() {
+export default function HeroSection() {
   return (
-    <section id="inicio" className="py-16 md:py-24 bg-gradient-to-b from-purple-50/40 to-white">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+    <main id="inicio" className="w-full bg-[#FDFBFD] text-slate-700 font-sans pb-16 pt-8 lg:pt-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Coluna de Texto */}
-        <div className="md:w-1/2">
-          <span className="text-xs font-bold tracking-widest text-purple-600 uppercase mb-4 block">
-            ENFA. GABRIELA YARYD
-          </span>
+        {/* LADO ESQUERDO: TEXTOS E BOTÕES */}
+        <div className="lg:col-span-7 space-y-6">
           
-          <h1 className="text-4xl md:text-5xl font-serif text-slate-900 leading-tight mb-6">
+          {/* Subtítulo com linha */}
+          <div className="flex items-center gap-3 text-[10px] font-semibold tracking-widest text-slate-400 uppercase">
+            <span className="w-6 h-[1.5px] bg-slate-400"></span>
+            <span>ENFA. GABRIELA YARYD</span>
+          </div>
+
+          {/* Título Serifado */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-slate-900 leading-[1.18] tracking-tight">
             Um cuidado especializado para acompanhar você em{' '}
-            <span className="italic font-normal text-purple-700">cada etapa</span> da sua recuperação.
+            <span className="font-normal italic text-[#5B63D3]">cada etapa</span> da sua recuperação.
           </h1>
-          
-          <p className="text-slate-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+
+          {/* Parágrafo de descrição */}
+          <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-lg pt-1">
             Cuidados pré e pós-operatórios em cirurgia plástica, com experiência, segurança, tecnologia e acolhimento.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+          {/* Grupo de Botões */}
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* Botão Principal com Gradiente Azul/Roxo */}
             <a
-              href="#agendamento"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-3.5 rounded-2xl shadow-lg shadow-purple-200 transition-all text-center text-sm"
+              href="#contato"
+              className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#5B63D3] to-[#4285F4] hover:opacity-95 text-white text-xs font-medium px-6 py-3.5 rounded-full shadow-md shadow-indigo-100 transition-all"
             >
-              Quero solicitar atendimento
+              <Heart className="w-4 h-4 stroke-[2]" />
+              <span>Quero solicitar atendimento</span>
             </a>
+
+            {/* Botão Secundário Branco */}
             <a
               href="#sobre"
-              className="border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium px-6 py-3.5 rounded-2xl transition-all text-center text-sm"
+              className="inline-flex items-center justify-center gap-3 bg-white text-slate-600 border border-slate-200 hover:border-slate-300 text-xs font-medium px-6 py-3.5 rounded-full shadow-sm transition-all"
             >
-              Conheça meu trabalho →
+              <span>Conheça meu trabalho</span>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
             </a>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Atendimento personalizado disponível</span>
-          </div>
-        </div>
-
-        {/* Coluna da Imagem com Card Flutuante */}
-        <div className="md:w-1/2 flex justify-center relative">
-          <div className="relative">
-            <img
-              src={fotoHero}
-              alt="Enfermeira Gabriela Yaryd"
-              className="rounded-3xl shadow-2xl w-full max-w-md h-auto object-cover border-4 border-white"
-            />
-            
-            {/* Card de Anos de Experiência */}
-            <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
-              <span className="text-3xl font-bold text-purple-700">13</span>
-              <div className="text-xs text-slate-600 leading-tight">
-                <span className="font-semibold block">anos de</span>
-                <span>experiência</span>
-              </div>
+          {/* Tag de Status Personalizado */}
+          <div className="pt-2">
+            <div className="inline-flex items-center gap-2 bg-[#F2F0FF] text-[#5B63D3] px-3.5 py-1.5 rounded-full text-[11px] font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#5B63D3]" />
+              <Sparkles className="w-3 h-3 text-[#5B63D3]" />
+              <span>Atendimento personalizado disponível</span>
             </div>
           </div>
         </div>
 
+        {/* LADO DIREITO: FOTO E BADGE DE ANOS */}
+        <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+          
+          {/* Card da Foto */}
+          <div className="relative w-full max-w-[400px] rounded-[36px] overflow-hidden bg-[#121214] shadow-2xl">
+            <img
+              src={heroImg}
+              alt="Enfermeira Gabriela Yaryd"
+              className="w-full h-[460px] sm:h-[500px] object-cover object-center opacity-90"
+            />
+          </div>
+
+          {/* Badge Flutuante de Anos de Experiência */}
+          <div className="absolute bottom-4 left-4 sm:left-6 bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-lg border border-white/60 flex flex-col justify-center">
+            <span className="text-2xl font-serif font-light text-[#5B63D3] leading-none mb-1">
+              13
+            </span>
+            <span className="text-[10px] text-slate-400 font-medium tracking-wide">
+              anos de experiência
+            </span>
+          </div>
+
+        </div>
+
       </div>
-    </section>
+    </main>
   );
 }
