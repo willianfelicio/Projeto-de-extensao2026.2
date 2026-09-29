@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.png'; // Ajuste se o logo estiver em outro caminho
 
 export default function Footer() {
   return (
@@ -24,16 +24,16 @@ export default function Footer() {
 
         {/* Informações Principais */}
         <div className="py-12 flex flex-col items-center text-center">
-          <img src={logo} alt="Logo Gabriela Yaryd" className="h-12 w-auto mb-4 object-contain" />
+          <img src={logo} alt="Logo Gabriela Yaryd" className="h-10 w-auto mb-4 object-contain" />
           
-          <h3 className="font-serif font-bold text-lg text-slate-800 tracking-wide uppercase">
+          <h3 className="font-serif font-bold text-base text-slate-800 tracking-wide uppercase">
             ENFA. GABRIELA YARYD
           </h3>
           <p className="text-xs text-slate-500 mt-1 max-w-md">
             Especialista em Centro Cirúrgico e Cuidados Pós-Operatórios em Cirurgia Plástica.
           </p>
 
-          {/* Nav Links no Rodapé */}
+          {/* Links de Navegação */}
           <div className="flex flex-wrap justify-center gap-6 mt-6 text-xs text-slate-600">
             <a href="#inicio" className="hover:text-purple-700 transition-colors">Início</a>
             <a href="#sobre" className="hover:text-purple-700 transition-colors">Sobre</a>

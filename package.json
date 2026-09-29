@@ -5,6 +5,7 @@
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.3"
+    "@tailwindcss/vite": "^4.3.3",
+    "framer-motion": "^13.4.6"
   }
 }
