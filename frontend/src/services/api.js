@@ -1,8 +1,8 @@
 import axios from 'axios';
 
+const API_BASE_URL = 'https://projeto-de-extensao2026-2.onrender.com';
+
 export const api = axios.create({
-  baseURL: 'http://localhost:8080', // URL do Spring Boot local
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: API_BASE_URL,
+  headers: { 'Content-Type': 'application/json' }
 });
