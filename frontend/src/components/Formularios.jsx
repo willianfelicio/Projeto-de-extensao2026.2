@@ -53,7 +53,7 @@ export default function Formularios() {
 
     try {
       // Altere a URL abaixo caso o seu endpoint no Spring Boot seja diferente
-      const response = await fetch('https://projeto-de-extensao2026-2.onrender.com/atendimentos/atendimentos', {
+      const response = await fetch('https://projeto-de-extensao2026-2.onrender.com/atendimentos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
