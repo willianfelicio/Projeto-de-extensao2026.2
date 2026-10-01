@@ -25,7 +25,7 @@ export default function Depoimentos() {
 
   return (
     <>
-      {/* SECÇÃO SUPERIOR: HUMANIDADE & PARCERIA COM CIRURGIÕES */}
+      {/* SEÇÃO SUPERIOR: HUMANIDADE & PARCERIA COM CIRURGIÕES */}
       <section className="w-full bg-[#FDFBFD] text-slate-700 font-sans py-20 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto space-y-16">
           
@@ -52,7 +52,7 @@ export default function Depoimentos() {
             </div>
           </div>
 
-          {/* CARD PARCERIA COM CIRURGIÕES */}
+          {/*PARCERIA COM CIRURGIÕES */}
           <div className="bg-gradient-to-r from-[#5B63D3] via-[#4A63D8] to-[#3B82F6] rounded-[32px] p-8 sm:p-12 text-white shadow-xl shadow-indigo-100">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -96,7 +96,7 @@ export default function Depoimentos() {
         </div>
       </section>
 
-      {/* SECÇÃO INFERIOR: DEPOIMENTOS */}
+      {/* SEÇÃO INFERIOR: DEPOIMENTOS */}
       <section id="depoimentos" className="w-full bg-[#EEF2F7] text-slate-700 font-sans py-20 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto space-y-16">
           
@@ -110,7 +110,7 @@ export default function Depoimentos() {
             </h2>
           </div>
 
-          {/* GRELHA DE DEPOIMENTOS */}
+          {/* DEPOIMENTOS DOS CLIENTES */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {depoimentos.map((item, index) => (
               <div
@@ -127,7 +127,7 @@ export default function Depoimentos() {
                   </p>
                 </div>
 
-                {/* Utilizador / Autor */}
+                {/* Utilizador*/}
                 <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
                   <div className="w-9 h-9 rounded-full bg-[#5B63D3] text-white flex items-center justify-center font-medium text-xs shrink-0">
                     {item.inicial}

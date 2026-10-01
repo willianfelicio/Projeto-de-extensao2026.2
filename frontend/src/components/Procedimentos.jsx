@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stethoscope, Users, HeartPulse, ChevronUp, ChevronDown } from 'lucide-react';
 
 export default function Atendimentos() {
-  // Estados iniciando como false para os cards começarem fechados
+  // inicia como false para os cards começarem fechados
   const [expandCard1, setExpandCard1] = useState(false);
   const [expandCard3, setExpandCard3] = useState(false);
 
