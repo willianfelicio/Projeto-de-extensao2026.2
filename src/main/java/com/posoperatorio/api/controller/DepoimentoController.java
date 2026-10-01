@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/depoimentos")
+@CrossOrigin(origins = "*")
 public class DepoimentoController {
 
     private final DepoimentoService depoimentoService;

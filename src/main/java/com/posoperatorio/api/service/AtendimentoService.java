@@ -2,11 +2,7 @@ package com.posoperatorio.api.service;
 
 import com.posoperatorio.api.dto.AtendimentoDTO;
 import com.posoperatorio.api.model.Atendimento;
-import com.posoperatorio.api.model.Paciente;
-import com.posoperatorio.api.model.Procedimento;
 import com.posoperatorio.api.repository.AtendimentoRepository;
-import com.posoperatorio.api.repository.PacienteRepository;
-import com.posoperatorio.api.repository.ProcedimentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +12,9 @@ import java.util.Optional;
 public class AtendimentoService {
 
     private final AtendimentoRepository atendimentoRepository;
-    private final PacienteRepository pacienteRepository;
-    private final ProcedimentoRepository procedimentoRepository;
 
-    public AtendimentoService(AtendimentoRepository atendimentoRepository,
-                              PacienteRepository pacienteRepository,
-                              ProcedimentoRepository procedimentoRepository) {
+    public AtendimentoService(AtendimentoRepository atendimentoRepository) {
         this.atendimentoRepository = atendimentoRepository;
-        this.pacienteRepository = pacienteRepository;
-        this.procedimentoRepository = procedimentoRepository;
     }
 
     public List<Atendimento> listarTodos() {
@@ -36,18 +26,23 @@ public class AtendimentoService {
     }
 
     public Atendimento salvar(AtendimentoDTO dto) {
-        Paciente paciente = pacienteRepository.findById(dto.pacienteId())
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado com ID: " + dto.pacienteId()));
-
-        Procedimento procedimento = procedimentoRepository.findById(dto.procedimentoId())
-                .orElseThrow(() -> new RuntimeException("Procedimento não encontrado com ID: " + dto.procedimentoId()));
-
         Atendimento atendimento = new Atendimento();
-        atendimento.setDataHora(dto.dataHora());
-        atendimento.setObservacoes(dto.observacoes()); // Corrigido setObservacoes
-        atendimento.setStatus(dto.status() != null ? dto.status() : "AGENDADO");
-        atendimento.setPaciente(paciente);
-        atendimento.setProcedimento(procedimento);
+        
+        // Mapeando os dados recebidos do formulário React
+        atendimento.setNome(dto.nome());
+        atendimento.setCpf(dto.cpf());
+        atendimento.setEmail(dto.email());
+        atendimento.setDataNascimento(dto.dataNascimento());
+        atendimento.setProcedimento(dto.procedimento());
+        atendimento.setDataPrevista(dto.dataPrevista());
+        atendimento.setNivelDor(dto.nivelDor());
+        atendimento.setObservacoes(dto.observacoes());
+        atendimento.setTelefone(dto.telefone());
+        atendimento.setNomeCirurgiao(dto.nomeCirurgiao());
+        atendimento.setHospital(dto.hospital());
+        atendimento.setCidade(dto.cidade());
+        atendimento.setNecessidades(dto.necessidades());
+        atendimento.setAutorizo(dto.autorizo());
 
         return atendimentoRepository.save(atendimento);
     }

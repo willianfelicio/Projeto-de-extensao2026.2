@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Formularios() {
-  const [formData, setFormData] = useState({
+  const initialFormState = {
     nome: '',
     cpf: '',
     email: '',
@@ -15,28 +15,31 @@ export default function Formularios() {
     hospital: '',
     cidade: '',
     necessidades: '',
-    autorizo: false
-  });
+    autorizo: false,
+  };
 
+  const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [mensagemSucesso, setMensagemSucesso] = useState('');
+  const [mensagemErro, setMensagemErro] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
-    
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: null }));
-    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = {};
+    setMensagemSucesso('');
+    setMensagemErro('');
 
-    if (!formData.nome.trim()) newErrors.nome = 'O Nome é obrigatório.';
+    // Validações básicas de campos obrigatórios
+    const newErrors = {};
+    if (!formData.nome.trim()) newErrors.nome = 'O Nome completo é obrigatório.';
     if (!formData.cpf.trim()) newErrors.cpf = 'O CPF é obrigatório.';
     if (!formData.email.trim()) newErrors.email = 'O E-mail é obrigatório.';
 
@@ -45,163 +48,161 @@ export default function Formularios() {
       return;
     }
 
-    alert('Formulário enviado com sucesso!');
+    setErrors({});
+    setLoading(true);
+
+    try {
+      // Altere a URL abaixo caso o seu endpoint no Spring Boot seja diferente
+      const response = await fetch('https://projeto-de-extensao2026-2.onrender.com/atendimentos/atendimentos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok || response.status === 201) {
+        setMensagemSucesso('Solicitação enviada e registrada no banco de dados com sucesso!');
+        setFormData(initialFormState); // Limpa o formulário após o envio
+      } else {
+        setMensagemErro(`Erro ao registrar: código HTTP ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Erro de conexão com o servidor:', error);
+      setMensagemErro('Não foi possível conectar ao servidor. Verifique se o backend Spring Boot está rodando.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section id="contato" className="py-20 bg-slate-50">
-      <div className="max-w-3xl mx-auto px-6">
+    <section id="contato" className="w-full bg-[#FDFBFD] font-sans py-20 px-6 lg:px-12">
+      <div className="max-w-4xl mx-auto space-y-12">
         
-        {/* SEÇÃO ADICIONADA (BANNER SUPERIOR DA IMAGEM) */}
-        <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center justify-center gap-1.5 text-purple-600 font-serif italic text-base">
-            <span>♡</span>
-            <span>Vamos conversar?</span>
+        {/* Cabeçalho do Formulário */}
+        <div className="text-center space-y-3">
+          <div className="flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.25em] text-[#5B63D3] uppercase">
+            <span className="w-8 h-[1px] bg-[#5B63D3]/40" />
+            <span>SOLICITAR ATENDIMENTO</span>
+            <span className="w-8 h-[1px] bg-[#5B63D3]/40" />
           </div>
-
-          <h1 className="font-serif text-3xl md:text-5xl text-slate-800 leading-tight">
-            Pronta para cuidar de você em cada etapa da sua recuperação.
-          </h1>
-
-          <p className="text-xs md:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
-            Solicite seu atendimento e receba um cuidado individualizado, seguro e acolhedor.
-          </p>
-
-          <div>
-            <a
-              href="#formulario-card"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-xs font-semibold px-7 py-3 rounded-full shadow-md shadow-purple-200 hover:opacity-95 transition-all"
-            >
-              <span>Solicitar atendimento</span>
-              <span>→</span>
-            </a>
-          </div>
-        </div>
-
-        {/* CÓDIGO ORIGINAL DO FORMULÁRIO (MANTIDO 100% INTACTO) */}
-        <div id="formulario-card" className="text-center mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-700 bg-purple-50 px-3 py-1 rounded-full">
-            SOLICITAR ATENDIMENTO
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-slate-800 mt-4">
-            Vamos conversar sobre o seu <span className="font-serif italic text-purple-700">cuidado</span>?
+          <h2 className="text-3xl sm:text-4xl font-serif text-slate-900">
+            Vamos conversar sobre o <span className="font-normal italic text-[#5B63D3]">seu cuidado</span>?
           </h2>
-          <p className="text-xs text-slate-500 mt-2">
-            Preencha o formulário com suas informações. Entrarei em contato para entender suas necessidades e planejar seus cuidados.
+          <p className="text-xs text-slate-500 max-w-xl mx-auto">
+            Preencha os dados abaixo para que possamos entender suas necessidades e planejar um atendimento exclusivo.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
+        {/* Notificações de Sucesso ou Erro */}
+        {mensagemSucesso && (
+          <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-xl text-center">
+            {mensagemSucesso}
+          </div>
+        )}
+
+        {mensagemErro && (
+          <div className="p-4 bg-rose-50 border border-rose-200 text-rose-700 text-sm rounded-xl text-center">
+            {mensagemErro}
+          </div>
+        )}
+
+        {/* Formulário Principal */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-[28px] p-8 md:p-10 border border-slate-100 shadow-sm space-y-8">
           
-          {/* INFORMAÇÕES ESSENCIAIS */}
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-purple-800 mb-4 pb-2 border-b border-slate-100">
-              INFORMAÇÕES ESSENCIAIS
+          {/* SEÇÃO 1: INFORMAÇÕES ESSENCIAIS */}
+          <div className="space-y-6">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-2">
+              Informações Essenciais
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Nome Completo */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Nome completo <span className="text-purple-600">*</span>
-                </label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Nome */}
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Nome completo *</label>
                 <input
                   type="text"
                   name="nome"
-                  placeholder="Seu nome completo"
                   value={formData.nome}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="Ex: Maria Silva"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
-                {errors.nome && <p className="text-[10px] text-red-500 mt-1">{errors.nome}</p>}
+                {errors.nome && <span className="text-[11px] text-rose-500">{errors.nome}</span>}
               </div>
 
               {/* CPF */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  CPF (Apenas números) <span className="text-purple-600">*</span>
-                </label>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">CPF (apenas números) *</label>
                 <input
                   type="text"
                   name="cpf"
-                  placeholder="000.000.000-00"
                   value={formData.cpf}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="000.000.000-00"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
-                {errors.cpf && <p className="text-[10px] text-red-500 mt-1">{errors.cpf}</p>}
+                {errors.cpf && <span className="text-[11px] text-rose-500">{errors.cpf}</span>}
               </div>
 
               {/* E-mail */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  E-mail <span className="text-purple-600">*</span>
-                </label>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">E-mail *</label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="seu@email.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="seu.email@exemplo.com"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
-                {errors.email && <p className="text-[10px] text-red-500 mt-1">{errors.email}</p>}
+                {errors.email && <span className="text-[11px] text-rose-500">{errors.email}</span>}
               </div>
 
               {/* Data de Nascimento */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Data de nascimento <span className="text-purple-600">*</span>
-                </label>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Data de nascimento</label>
                 <input
                   type="date"
                   name="dataNascimento"
                   value={formData.dataNascimento}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 text-slate-600"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 text-slate-600 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
 
               {/* Procedimento */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Procedimento realizado ou que vai realizar <span className="text-purple-600">*</span>
-                </label>
-                <select
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Procedimento realizado ou a realizar</label>
+                <input
+                  type="text"
                   name="procedimento"
                   value={formData.procedimento}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 text-slate-600 bg-white"
-                >
-                  <option value="">Selecione...</option>
-                  <option value="mamoplastia">Mamoplastia</option>
-                  <option value="abdominoplastia">Abdominoplastia</option>
-                  <option value="lipoaspiração">Lipoaspiração</option>
-                  <option value="ritidoplastia">Ritidoplastia (Facelift)</option>
-                  <option value="outro">Outro procedimento</option>
-                </select>
+                  placeholder="Ex: Abdominoplastia, Mamoplastia..."
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
+                />
               </div>
 
               {/* Data Prevista */}
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Data prevista da cirurgia <span className="text-purple-600">*</span>
-                </label>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Data prevista da cirurgia</label>
                 <input
                   type="date"
                   name="dataPrevista"
                   value={formData.dataPrevista}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 text-slate-600"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 text-slate-600 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
             </div>
 
-            {/* Nível de dor */}
-            <div className="mt-4">
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Nível de dor (0 = sem dor, 10 = dor intensa)
-              </label>
+            {/* Nível de Dor */}
+            <div className="space-y-2 pt-2">
+              <div className="flex justify-between items-center">
+                <label className="text-xs font-medium text-slate-700">Nível de dor (0 a 10 - sem dor a dor intensa)</label>
+                <span className="text-xs font-semibold text-[#5B63D3]">{formData.nivelDor}</span>
+              </div>
               <input
                 type="range"
                 min="0"
@@ -209,130 +210,125 @@ export default function Formularios() {
                 name="nivelDor"
                 value={formData.nivelDor}
                 onChange={handleChange}
-                className="w-full accent-purple-600"
+                className="w-full accent-[#5B63D3] cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                <span>0 (Sem dor)</span>
-                <span className="font-bold text-purple-700">{formData.nivelDor}</span>
-                <span>10 (Dor intensa)</span>
-              </div>
             </div>
 
-            {/* Observações */}
-            <div className="mt-4">
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Observações / Dúvidas
-              </label>
+            {/* Observações / Dúvidas */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-slate-700">Observações / Dúvidas</label>
               <textarea
                 name="observacoes"
                 rows="3"
-                placeholder="Conte sobre seu momento, dúvidas e necessidades..."
                 value={formData.observacoes}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                placeholder="Descreva aqui qualquer detalhe ou dúvida que deseja compartilhar..."
+                className="w-full text-xs p-4 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors resize-none"
               />
             </div>
           </div>
 
-          {/* INFORMAÇÕES COMPLEMENTARES */}
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-purple-800 mb-4 pb-2 border-b border-slate-100">
-              INFORMAÇÕES COMPLEMENTARES (OPCIONAL)
+          {/* SEÇÃO 2: INFORMAÇÕES COMPLEMENTARES */}
+          <div className="space-y-6 pt-4">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-2">
+              Informações Complementares (Opcional)
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Telefone / WhatsApp</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Telefone / WhatsApp */}
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Telefone / WhatsApp</label>
                 <input
                   type="text"
                   name="telefone"
-                  placeholder="(00) 00000-0000"
                   value={formData.telefone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="(00) 00000-0000"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Nome do cirurgião</label>
+              {/* Nome do Cirurgião */}
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Nome do cirurgião</label>
                 <input
                   type="text"
                   name="nomeCirurgiao"
-                  placeholder="Dr(a). Nome"
                   value={formData.nomeCirurgiao}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="Ex: Dr. Fulano de Tal"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Hospital / Clínica</label>
+              {/* Hospital / Clínica */}
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Hospital / Clínica</label>
                 <input
                   type="text"
                   name="hospital"
-                  placeholder="Onde será ou foi feita"
                   value={formData.hospital}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="Ex: Hospital Albert Einstein"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Cidade</label>
+              {/* Cidade */}
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-slate-700">Cidade</label>
                 <input
                   type="text"
                   name="cidade"
-                  placeholder="Sua cidade"
                   value={formData.cidade}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                  placeholder="Ex: São Paulo"
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
             </div>
 
-            <div className="mt-4">
-              <label className="block text-xs font-medium text-slate-700 mb-1">Necessidades específicas</label>
-              <input
-                type="text"
+            {/* Necessidades Específicas */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-slate-700">Necessidades específicas</label>
+              <textarea
                 name="necessidades"
-                placeholder="Alguma necessidade especial de cuidado, horário, mobilidade..."
+                rows="2"
                 value={formData.necessidades}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                placeholder="Alguma necessidade específica de mobilidade, medicação ou acompanhamento especial?"
+                className="w-full text-xs p-4 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors resize-none"
               />
             </div>
           </div>
 
-          {/* Aceite LGPD */}
+          {/* CHECKBOX DE AUTORIZAÇÃO */}
           <div className="flex items-start gap-3 pt-2">
             <input
               type="checkbox"
-              name="autorizo"
               id="autorizo"
+              name="autorizo"
               checked={formData.autorizo}
               onChange={handleChange}
-              className="mt-0.5 rounded border-slate-300 text-purple-600 focus:ring-purple-500"
+              className="mt-0.5 rounded border-slate-300 text-[#5B63D3] focus:ring-[#5B63D3]"
             />
-            <label htmlFor="autorizo" className="text-[11px] text-slate-500 leading-tight">
-              Autorizo o envio e o tratamento dos meus dados pelo meio do fim de contato e avaliação de prestação de atendimentos, conforme a Política de Privacidade.
+            <label htmlFor="autorizo" className="text-[11px] text-slate-500 leading-relaxed cursor-pointer">
+              Autorizo o envio e o tratamento dos meus dados pessoais para fins de contato e avaliação de atendimento, em conformidade com a LGPD.
             </label>
           </div>
 
-          {/* Botão Enviar */}
-          <div className="text-center pt-2">
+          {/* BOTÃO DE ENVIO */}
+          <div className="flex justify-center pt-4">
             <button
               type="submit"
-              className="w-full md:w-auto px-8 py-3.5 bg-purple-700 text-white font-semibold text-xs rounded-xl hover:bg-purple-800 transition-colors shadow-md shadow-purple-200"
+              disabled={loading}
+              className="w-full sm:w-auto px-10 py-3.5 bg-[#5B63D3] text-white font-medium text-xs rounded-full shadow-md hover:bg-[#464cc4] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Enviar solicitação
+              {loading ? 'Enviando...' : 'Enviar solicitação'}
             </button>
-            <p className="text-[10px] text-slate-400 mt-2 flex items-center justify-center gap-1">
-              <span>🔒</span> Seus dados estão seguros com total sigilo e segurança.
-            </p>
           </div>
 
         </form>
-
       </div>
     </section>
   );
