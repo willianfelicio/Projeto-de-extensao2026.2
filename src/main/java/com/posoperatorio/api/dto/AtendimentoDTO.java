@@ -1,24 +1,29 @@
 package com.posoperatorio.api.dto;
 
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
 
+// DTO (Data Transfer Object) para a entidade Atendimento
 public record AtendimentoDTO(
         Long id,
 
-        //Garante que a data e o horário do atendimento foram informados
-        @NotNull(message = "A data e hora são obrigatórios")
-        LocalDateTime dataHora,
+        @NotBlank(message = "O nome é obrigatório")
+        String nome,
 
+        @NotBlank(message = "O CPF é obrigatório")
+        String cpf,
+
+        @NotBlank(message = "O e-mail é obrigatório")
+        String email,
+
+        String dataNascimento,
+        String procedimento,
+        String dataPrevista,
+        String nivelDor,
         String observacoes,
-
-        String status,
-
-        //Recebe apenas o ID do paciente vinculado
-        @NotNull(message = "O ID do paciente é obrigatório")
-        Long pacienteId,
-
-        //Recebe o Id do procedimento vinculado
-        @NotNull(message = "O Id do procedimento é obrigatório")
-        Long procedimentoId
-){}
+        String telefone,
+        String nomeCirurgiao,
+        String hospital,
+        String cidade,
+        String necessidades,
+        Boolean autorizo
+) {}

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Depoimento {
-
+    // Identificador único do depoimento
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

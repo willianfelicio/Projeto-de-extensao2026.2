@@ -6,18 +6,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+    // Configurações de CORS para permitir requisições de diferentes origens
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000",                  // Para desenvolvimento local (ex: React)
-                        "http://localhost:5173",
-                        "http://127.0.0.1:5173",
-                        "http://127.0.0.1:3000",
-                        "https://seu-frontend-hospedado.vercel.app" // Substitua pela URL real do Front-end em produção
-                )
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedOriginPatterns("*")  // Permite todas as origens      
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite métodos HTTP específicos
+                .allowedHeaders("*") // Permite todos os cabeçalhos
+                .allowCredentials(true); // Permite envio de credenciais (cookies, autenticação)
     }
 }
