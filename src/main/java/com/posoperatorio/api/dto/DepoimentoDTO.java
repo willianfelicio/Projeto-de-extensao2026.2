@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
+// DTO (Data Transfer Object) para a entidade Depoimento
 public record DepoimentoDTO(
         Long id,
 

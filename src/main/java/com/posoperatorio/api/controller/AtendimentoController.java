@@ -27,6 +27,7 @@ public class AtendimentoController {
         return ResponseEntity.ok(atendimentoService.listarTodos()); // Corrigido para letra minúscula
     }
 
+    // Endpoint para buscar um atendimento por ID
     @GetMapping("/{id}")
     public ResponseEntity<Atendimento> buscarPorId(@PathVariable Long id) {
         return atendimentoService.buscarPorId(id)
@@ -34,12 +35,14 @@ public class AtendimentoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Endpoint para salvar um novo atendimento
     @PostMapping
     public ResponseEntity<Atendimento> salvar(@RequestBody @Valid AtendimentoDTO dto) {
         Atendimento atendimentoSalvo = atendimentoService.salvar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(atendimentoSalvo); // Corrigido para atendimentoSalvo
     }
 
+    // Endpoint para deletar um atendimento por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) { // Corrigido para id (com 'i' minúsculo)
         if (atendimentoService.buscarPorId(id).isEmpty()) {

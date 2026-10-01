@@ -17,15 +17,18 @@ public class DepoimentoService {
     private final DepoimentoRepository depoimentoRepository;
     private final PacienteRepository pacienteRepository;
 
+    // Construtor para injeção de dependência dos repositórios
     public DepoimentoService(DepoimentoRepository depoimentoRepository, PacienteRepository pacienteRepository) {
         this.depoimentoRepository = depoimentoRepository;
         this.pacienteRepository = pacienteRepository;
     }
 
+    // Método para listar todos os depoimentos
     public List<Depoimento> listarTodos() {
         return depoimentoRepository.findAll();
     }
 
+    // Método para buscar um depoimento por ID
     public Optional<Depoimento> buscarPorId(Long id) {
         return depoimentoRepository.findById(id);
     }
@@ -44,7 +47,7 @@ public class DepoimentoService {
 
         return depoimentoRepository.save(depoimento);
     }
-
+    // Método para deletar um depoimento por ID
     public void deletar(Long id) {
         depoimentoRepository.deleteById(id);
     }

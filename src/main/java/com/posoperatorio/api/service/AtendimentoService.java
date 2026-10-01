@@ -13,14 +13,17 @@ public class AtendimentoService {
 
     private final AtendimentoRepository atendimentoRepository;
 
+    // Construtor para injeção de dependência do AtendimentoRepository
     public AtendimentoService(AtendimentoRepository atendimentoRepository) {
         this.atendimentoRepository = atendimentoRepository;
     }
 
+    // Método para listar todos os atendimentos
     public List<Atendimento> listarTodos() {
         return atendimentoRepository.findAll();
     }
 
+    // Método para buscar um atendimento por ID
     public Optional<Atendimento> buscarPorId(Long id) {
         return atendimentoRepository.findById(id);
     }

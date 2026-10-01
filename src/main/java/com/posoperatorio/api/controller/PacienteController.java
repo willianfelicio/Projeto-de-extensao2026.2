@@ -21,13 +21,13 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
 
-    // GET /pacientes - Lista todos os pacientes
+    // Lista todos os pacientes
     @GetMapping
     public ResponseEntity<List<Paciente>> listarTodos() {
         return ResponseEntity.ok(pacienteService.listarTodos());
     }
 
-    // GET /pacientes/{id} - Busca um paciente por ID
+    // Busca um paciente por ID
     @GetMapping("/{id}")
     public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id){
         return pacienteService.buscarPorId(id)
@@ -35,14 +35,14 @@ public class PacienteController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /pacientes - Cadastra um novo paciente validando o DTO
+    // Cadastra um novo paciente validando o DTO
     @PostMapping
     public ResponseEntity<Paciente> salvar(@RequestBody @Valid PacienteDTO dto) {
         Paciente pacienteSalvo = pacienteService.salvar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pacienteSalvo);
     }
 
-    // DELETE /pacientes/{id} - Remove um paciente por ID
+    // Remove um paciente por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (pacienteService.buscarPorId(id).isEmpty()) {

@@ -6,13 +6,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+    // Configurações de CORS para permitir requisições de diferentes origens
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")  // Permite todas as origens (substitua por origens específicas em produção)       
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedOriginPatterns("*")  // Permite todas as origens      
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite métodos HTTP específicos
+                .allowedHeaders("*") // Permite todos os cabeçalhos
+                .allowCredentials(true); // Permite envio de credenciais (cookies, autenticação)
     }
 }

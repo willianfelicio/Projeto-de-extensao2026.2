@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function ComoFunciona() {
+  {/* Array de passos do acompanhamento */ }
   const passos = [
     {
       numero: "01",
@@ -28,7 +29,7 @@ export default function ComoFunciona() {
       descricao: "Acompanho sua evolução clínica até que você se sinta segura e recuperada."
     }
   ];
-
+  {/* Retorno do componente */ }
   return (
     <section id="como-funciona" className="w-full bg-[#EEF2F7] text-slate-700 font-sans py-20 px-6 lg:px-12">
       <div className="max-w-5xl mx-auto space-y-16">

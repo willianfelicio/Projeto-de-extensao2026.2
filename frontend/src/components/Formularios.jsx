@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function Formularios() {
+  {/* Estado inicial do formulário */ }
   const initialFormState = {
     nome: '',
     cpf: '',
@@ -18,6 +19,7 @@ export default function Formularios() {
     autorizo: false,
   };
 
+  {/* Estados para gerenciar os dados do formulário, erros, carregamento e mensagens (sucesso/erro) */ }
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -52,7 +54,7 @@ export default function Formularios() {
     setLoading(true);
 
     try {
-      // Altere a URL abaixo caso o seu endpoint no Spring Boot seja diferente
+      // URL do backend Spring Boot hospedado no Render
       const response = await fetch('https://projeto-de-extensao2026-2.onrender.com/atendimentos', {
         method: 'POST',
         headers: {
@@ -110,7 +112,7 @@ export default function Formularios() {
         {/* Formulário Principal */}
         <form onSubmit={handleSubmit} className="bg-white rounded-[28px] p-8 md:p-10 border border-slate-100 shadow-sm space-y-8">
           
-          {/* SEÇÃO 1: INFORMAÇÕES ESSENCIAIS */}
+          {/* INFORMAÇÕES ESSENCIAIS */}
           <div className="space-y-6">
             <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-2">
               Informações Essenciais
@@ -228,7 +230,7 @@ export default function Formularios() {
             </div>
           </div>
 
-          {/* SEÇÃO 2: INFORMAÇÕES COMPLEMENTARES */}
+          {/* INFORMAÇÕES COMPLEMENTARES */}
           <div className="space-y-6 pt-4">
             <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-2">
               Informações Complementares (Opcional)

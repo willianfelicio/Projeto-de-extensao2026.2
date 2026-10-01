@@ -4,6 +4,7 @@
     import jakarta.validation.constraints.NotBlank;
     import jakarta.validation.constraints.Pattern;
 
+    // DTO (Data Transfer Object) para a entidade Paciente
     public record PacienteDTO(
             Long id,
 

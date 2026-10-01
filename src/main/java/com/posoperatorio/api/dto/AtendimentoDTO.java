@@ -2,6 +2,7 @@ package com.posoperatorio.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
+// DTO (Data Transfer Object) para a entidade Atendimento
 public record AtendimentoDTO(
         Long id,
 

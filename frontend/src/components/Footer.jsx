@@ -44,10 +44,10 @@ export default function Footer() {
 
         </div>
 
-        {/* BLOCO CENTRAL: LOGO + NOME + SUBTÍTULO */}
+        {/* BLOCO CENTRAL*/}
         <div className="text-center space-y-4 max-w-2xl mx-auto pt-4">
           
-          {/* Logo / Emblema em SVG para evitar erro de imagem ausente */}
+          {/* Logo */}
           <div className="flex justify-center">
             <div className="w-16 h-16 rounded-full border border-purple-200 flex items-center justify-center bg-white shadow-sm">
               <svg className="w-8 h-8 text-[#6C5CE7]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
@@ -76,7 +76,7 @@ export default function Footer() {
           <a href="#politica" className="hover:text-[#6C5CE7] transition-colors">Política de Privacidade</a>
         </nav>
 
-        {/* DIVISOR COM CORAÇÃO CENTRAL */}
+        {/* DIVISOR */}
         <div className="relative flex items-center justify-center pt-2">
           <div className="w-full max-w-xl border-t border-slate-300/60"></div>
           <div className="absolute bg-[#EFEFF6] px-3">
@@ -86,7 +86,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* RODAPÉ INFERIOR: COPYRIGHT + REDES SOCIAIS */}
+        {/* RODAPÉ */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-slate-500">
           <p className="text-[11px] text-center sm:text-left text-slate-500 font-normal">
             © 2026 Enfa. Gabriela Yaryd. Todos os direitos reservados.

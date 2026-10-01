@@ -1,13 +1,13 @@
 import React from 'react';
 import { Heart, ArrowRight, Sparkles } from 'lucide-react';
-import heroImg from '../assets/gabriela-hero.png'; // Confirma o nome do ficheiro da foto
+import heroImg from '../assets/gabriela-hero.png';
 
 export default function HeroSection() {
   return (
     <main id="inicio" className="w-full bg-[#FDFBFD] text-slate-700 font-sans pb-16 pt-8 lg:pt-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* LADO ESQUERDO: TEXTOS E BOTÕES */}
+        {/* TEXTOS E BOTÕES */}
         <div className="lg:col-span-7 space-y-6">
           
           {/* Subtítulo com linha */}
@@ -29,7 +29,8 @@ export default function HeroSection() {
 
           {/* Grupo de Botões */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            {/* Botão Principal com Gradiente Azul/Roxo */}
+
+            {/* Botão Principal */}
             <a
               href="#contato"
               className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#5B63D3] to-[#4285F4] hover:opacity-95 text-white text-xs font-medium px-6 py-3.5 rounded-full shadow-md shadow-indigo-100 transition-all"
@@ -38,7 +39,7 @@ export default function HeroSection() {
               <span>Quero solicitar atendimento</span>
             </a>
 
-            {/* Botão Secundário Branco */}
+            {/* Botão Secundário */}
             <a
               href="#sobre"
               className="inline-flex items-center justify-center gap-3 bg-white text-slate-600 border border-slate-200 hover:border-slate-300 text-xs font-medium px-6 py-3.5 rounded-full shadow-sm transition-all"
@@ -58,7 +59,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* LADO DIREITO: FOTO E BADGE DE ANOS */}
+        {/* FOTO E BADGE DE ANOS */}
         <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
           
           {/* Card da Foto */}
@@ -70,7 +71,7 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Badge Flutuante de Anos de Experiência */}
+          {/* Experiência */}
           <div className="absolute bottom-4 left-4 sm:left-6 bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-lg border border-white/60 flex flex-col justify-center">
             <span className="text-2xl font-serif font-light text-[#5B63D3] leading-none mb-1">
               13

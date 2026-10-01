@@ -1,8 +1,9 @@
 import React from 'react';
 import { Heart, Award, ShieldCheck, User, Home } from 'lucide-react';
-import sobreImg from '../assets/gabriela-sobre.png'; // Confirma o nome do ficheiro da foto na pasta assets
+import sobreImg from '../assets/gabriela-sobre.png';
 
 export default function Sobre() {
+  // Array de destaques com ícones e textos
   const destaques = [
     {
       icon: Award,
@@ -24,11 +25,11 @@ export default function Sobre() {
 
   return (
     <>
-      {/* SECÇÃO 1: SOBRE A GABRIELA */}
+      {/* SOBRE A GABRIELA */}
       <section id="sobre" className="w-full bg-[#FDFBFD] text-slate-700 font-sans py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* LADO ESQUERDO: FOTO + ASSINATURA */}
+          {/* FOTO + ASSINATURA */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="w-full max-w-[380px] rounded-[32px] overflow-hidden bg-slate-900 shadow-xl mb-6">
               <img
@@ -48,7 +49,7 @@ export default function Sobre() {
             </div>
           </div>
 
-          {/* LADO DIREITO: CONTEÚDO TEXTUAL */}
+          {/* CONTEÚDO TEXTUAL */}
           <div className="lg:col-span-7 space-y-6 pt-2">
             <div className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">
               SOBRE A GABRIELA
@@ -99,7 +100,7 @@ export default function Sobre() {
         </div>
       </section>
 
-      {/* SECÇÃO 2: EXPERIÊNCIA & ESPECIALIZAÇÃO */}
+      {/* EXPERIÊNCIA + ESPECIALIZAÇÃO */}
       <section className="w-full bg-[#EEF2F7] text-slate-700 font-sans py-20 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto space-y-16">
           

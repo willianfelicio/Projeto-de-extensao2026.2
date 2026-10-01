@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Importação dos componentes
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Sobre from './components/Sobre';
@@ -10,6 +11,7 @@ import Depoimentos from './components/Depoimentos';
 import Formularios from './components/Formularios';
 import Footer from './components/Footer';
 
+// Animação para as seções do site
 const sectionAnimation = {
   initial: { opacity: 0, y: 35 },
   whileInView: { opacity: 1, y: 0 },
@@ -19,6 +21,8 @@ const sectionAnimation = {
 
 export default function App() {
   return (
+    
+    // Container principal do site
     <div className="min-h-screen bg-slate-50 text-slate-800 scroll-smooth selection:bg-purple-100 selection:text-purple-800">
       <Navbar />
       

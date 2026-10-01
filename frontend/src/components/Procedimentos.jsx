@@ -54,7 +54,7 @@ export default function Atendimentos() {
           </h2>
         </div>
 
-        {/* GRELHA DE 3 CARDS */}
+        {/* 3 CARDS */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           
           {/* CARD 1 */}
@@ -74,7 +74,7 @@ export default function Atendimentos() {
               Acompanhamento especializado e individualizado para pacientes de cirurgia plástica, com foco em segurança, conforto, recuperação e prevenção de complicações.
             </p>
 
-            {/* Botão Ver mais (Estilo Pílula) */}
+            {/* Botão Ver mais */}
             <div>
               <button
                 onClick={() => setExpandCard1(!expandCard1)}
@@ -128,7 +128,7 @@ export default function Atendimentos() {
               Cuidados de Enfermagem Personalizados
             </h3>
 
-            {/* Botão Ver mais (Estilo Pílula) */}
+            {/* Botão Ver mais  */}
             <div>
               <button
                 onClick={() => setExpandCard3(!expandCard3)}

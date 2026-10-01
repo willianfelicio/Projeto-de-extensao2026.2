@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
-import logo from '../assets/logo.png'; // Confirma o nome do ficheiro do teu logótipo
+import logo from '../assets/logo.png'; 
 
 export default function Navbar() {
   return (
