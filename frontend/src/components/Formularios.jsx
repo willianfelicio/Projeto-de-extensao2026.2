@@ -41,20 +41,20 @@ export default function Formularios() {
   const enviarNotificacaoWhatsApp = (dados) => {
     const mensagem = `*NOVA SOLICITAÇÃO DE ATENDIMENTO* 🏥\n\n` +
       `*— Informações Essenciais —*\n` +
-      `👤 *Nome:* ${dados.nome}\n` +
-      `📄 *CPF:* ${dados.cpf}\n` +
-      `✉️ *E-mail:* ${dados.email}\n` +
-      `🎂 *Data Nascimento:* ${dados.dataNascimento || 'Não informada'}\n` +
-      `🏥 *Procedimento:* ${dados.procedimento || 'Não informado'}\n` +
-      `📅 *Data Prevista:* ${dados.dataPrevista || 'Não informada'}\n` +
-      `📊 *Nível de Dor:* ${dados.nivelDor}/10\n` +
-      `📝 *Observações:* ${dados.observacoes || 'Nenhuma'}\n\n` +
+      `*Nome:* ${dados.nome}\n` +
+      `*CPF:* ${dados.cpf}\n` +
+      `*E-mail:* ${dados.email}\n` +
+      `*Data Nascimento:* ${dados.dataNascimento || 'Não informada'}\n` +
+      `*Procedimento:* ${dados.procedimento || 'Não informado'}\n` +
+      `*Data Prevista:* ${dados.dataPrevista || 'Não informada'}\n` +
+      `*Nível de Dor:* ${dados.nivelDor}/10\n` +
+      `*Observações:* ${dados.observacoes || 'Nenhuma'}\n\n` +
       `*— Informações Complementares —*\n` +
-      `📱 *Telefone/WhatsApp:* ${dados.telefone || 'Não informado'}\n` +
-      `👨‍⚕️ *Cirurgião:* ${dados.nomeCirurgiao || 'Não informado'}\n` +
-      `🏥 *Hospital/Clínica:* ${dados.hospital || 'Não informado'}\n` +
-      `📍 *Cidade:* ${dados.cidade || 'Não informada'}\n` +
-      `♿ *Necessidades Específicas:* ${dados.necessidades || 'Nenhuma'}`;
+      `*Telefone/WhatsApp:* ${dados.telefone || 'Não informado'}\n` +
+      `*Cirurgião:* ${dados.nomeCirurgiao || 'Não informado'}\n` +
+      `*Hospital/Clínica:* ${dados.hospital || 'Não informado'}\n` +
+      `*Cidade:* ${dados.cidade || 'Não informada'}\n` +
+      `*Necessidades Específicas:* ${dados.necessidades || 'Nenhuma'}`;
     
     // Cria a URL do WhatsApp com a mensagem codificada
     const url = `https://wa.me/${NUMERO_WHATSAPP_ENFERMEIRA}?text=${encodeURIComponent(mensagem)}`;
@@ -289,7 +289,7 @@ export default function Formularios() {
                   name="nomeCirurgiao"
                   value={formData.nomeCirurgiao}
                   onChange={handleChange}
-                  placeholder="Ex: Dr. Fulano de Tal"
+                  placeholder="Ex: Dr. Carlos Oliveira"
                   className="w-full text-xs px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-[#5B63D3] transition-colors"
                 />
               </div>
