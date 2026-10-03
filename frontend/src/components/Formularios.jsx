@@ -55,7 +55,8 @@ export default function Formularios() {
       `🏥 *Hospital/Clínica:* ${dados.hospital || 'Não informado'}\n` +
       `📍 *Cidade:* ${dados.cidade || 'Não informada'}\n` +
       `♿ *Necessidades Específicas:* ${dados.necessidades || 'Nenhuma'}`;
-
+    
+    // Cria a URL do WhatsApp com a mensagem codificada
     const url = `https://wa.me/${NUMERO_WHATSAPP_ENFERMEIRA}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
   };
