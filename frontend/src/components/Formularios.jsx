@@ -39,7 +39,7 @@ export default function Formularios() {
 
   // Função para formatar os dados e abrir o WhatsApp
   const enviarNotificacaoWhatsApp = (dados) => {
-    const mensagem = `*NOVA SOLICITAÇÃO DE ATENDIMENTO* 🏥\n\n` +
+    const mensagem = `*NOVA SOLICITAÇÃO DE ATENDIMENTO* \n\n` +
       `*— Informações Essenciais —*\n` +
       `*Nome:* ${dados.nome}\n` +
       `*CPF:* ${dados.cpf}\n` +
