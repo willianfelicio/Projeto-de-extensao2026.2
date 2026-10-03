@@ -96,7 +96,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             {/* Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/gabrielayaryd.enfa/"
               target="_blank"
               rel="noreferrer"
               className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-600 hover:text-[#6C5CE7] hover:shadow-md transition-all"
@@ -110,7 +110,7 @@ export default function Footer() {
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/5500000000000"
+              href="https://wa.me/5511998806889?text=Ol%C3%A1%2C%20Gabriela%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20de%20p%C3%B3s-operat%C3%B3rio.%20Poderia%20me%20passar%20mais%20informa%C3%A7%C3%B5es%2C%20por%20favor%3F%20%F0%9F%98%8A"
               target="_blank"
               rel="noreferrer"
               className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-600 hover:text-[#6C5CE7] hover:shadow-md transition-all"
@@ -122,7 +122,7 @@ export default function Footer() {
 
             {/* Email */}
             <a
-              href="mailto:contato@exemplo.com"
+              href="gabrielayaryd.enfa@gmail.com"
               className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-600 hover:text-[#6C5CE7] hover:shadow-md transition-all"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
