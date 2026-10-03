@@ -19,7 +19,10 @@ export default function Formularios() {
     autorizo: false,
   };
 
-  {/* Estados para gerenciar os dados do formulário, erros, carregamento e mensagens (sucesso/erro) */ }
+  {/* NÚMERO DO WHATSAPP DO DESTINATÁRIO */}
+  const NUMERO_WHATSAPP_ENFERMEIRA = "5511998806889";
+
+  {/* Estados de gerenciamento de dados do formulário, erros, carregamento e mensagens (sucesso/erro) */ }
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -32,6 +35,29 @@ export default function Formularios() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+  };
+
+  // Função para formatar os dados e abrir o WhatsApp
+  const enviarNotificacaoWhatsApp = (dados) => {
+    const mensagem = `*NOVA SOLICITAÇÃO DE ATENDIMENTO* 🏥\n\n` +
+      `*— Informações Essenciais —*\n` +
+      `👤 *Nome:* ${dados.nome}\n` +
+      `📄 *CPF:* ${dados.cpf}\n` +
+      `✉️ *E-mail:* ${dados.email}\n` +
+      `🎂 *Data Nascimento:* ${dados.dataNascimento || 'Não informada'}\n` +
+      `🏥 *Procedimento:* ${dados.procedimento || 'Não informado'}\n` +
+      `📅 *Data Prevista:* ${dados.dataPrevista || 'Não informada'}\n` +
+      `📊 *Nível de Dor:* ${dados.nivelDor}/10\n` +
+      `📝 *Observações:* ${dados.observacoes || 'Nenhuma'}\n\n` +
+      `*— Informações Complementares —*\n` +
+      `📱 *Telefone/WhatsApp:* ${dados.telefone || 'Não informado'}\n` +
+      `👨‍⚕️ *Cirurgião:* ${dados.nomeCirurgiao || 'Não informado'}\n` +
+      `🏥 *Hospital/Clínica:* ${dados.hospital || 'Não informado'}\n` +
+      `📍 *Cidade:* ${dados.cidade || 'Não informada'}\n` +
+      `♿ *Necessidades Específicas:* ${dados.necessidades || 'Nenhuma'}`;
+
+    const url = `https://wa.me/${NUMERO_WHATSAPP_ENFERMEIRA}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
   };
 
   const handleSubmit = async (e) => {
@@ -64,7 +90,11 @@ export default function Formularios() {
       });
 
       if (response.ok || response.status === 201) {
-        setMensagemSucesso('Solicitação enviada e registrada no banco de dados com sucesso!');
+        setMensagemSucesso('Solicitação enviada e registrada com sucesso! Redirecionando para o WhatsApp...');
+        
+        // Dispara o WhatsApp com os dados
+        enviarNotificacaoWhatsApp(formData);
+
         setFormData(initialFormState); // Limpa o formulário após o envio
       } else {
         setMensagemErro(`Erro ao registrar: código HTTP ${response.status}`);
