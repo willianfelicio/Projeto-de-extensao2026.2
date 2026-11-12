@@ -1,4 +1,4 @@
-# 🏥 Sistema Web Profissional para Cuidados Pré e Pós-Operatórios (Enfermagem)
+# 🏥 SISTEMA WEB FULL-STACK PARA ATENDIMENTO PRÉ E PÓS-OPERATÓRIO
 
 > **Projeto de Extensão**
 
