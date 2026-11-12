@@ -37,7 +37,7 @@ O projeto foi estruturado em uma arquitetura moderna de três camadas (*Full-Sta
 ---
 
 ## 🚀 Links de Acesso
-- **Aplicação Web (Frontend no ar):** [link Vercel](https://gabriela-yaryd.vercel.app)]
+- **Aplicação Web (Frontend no ar):** [link Vercel](https://gabriela-yaryd.vercel.app)
 - **API Backend (Render):** [link da API / Endpoints](https://projeto-de-extensao2026-2.onrender.com/atendimentos)
 - **Vídeo de Apresentação do Projeto:** [Inserir link do YouTube aqui] *(Mínimo de 5 minutos)*
 
