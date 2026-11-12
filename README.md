@@ -51,7 +51,7 @@ O projeto foi estruturado em uma arquitetura moderna de três camadas (*Full-Sta
 | [Guilherme] | [RA : ] | [GitHub](https://github.com/) |
 | [João Alexandre Zotta de Paula] | [RA : 3126103173] | [GitHub](https://github.com/) |
 | [Mateus Yaryd Garcez de Oliveira] | [RA : 3126100355] | [GitHub](https://github.com/) |
-| [Nome do Colega 5] | [Inserir RA] | [GitHub](https://github.com/) |
+| [Ronald Guilherme] | [Inserir RA] | [GitHub](https://github.com/) |
 | [Thiago Veronezi Rogerio] | [RA : 3026101493] | [GitHub](https://github.com/) |
 | [Willian Felicio Cavalcanti] | [RA : 3025203771] | [GitHub](https://github.com/willianfelicio) |
 
