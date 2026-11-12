@@ -47,12 +47,12 @@ O projeto foi estruturado em uma arquitetura moderna de três camadas (*Full-Sta
 | Nome do Integrante | RM / RA | Perfil no GitHub |
 | :--- | :--- | :--- |
 | [Gabriel Rodrigues] | [RA : ] | [GitHub](https://github.com/) |
-| [Gabriela Santos da Silva] | [RA : 3026106283] | [GitHub](https://github.com/gabrielahsantos-dev?tab=repositories) 
+| [Gabriela Santos da Silva] | [RA : 3026106283] | [GitHub](https://github.com/gabrielahsantos-dev?tab=repositories)|
 | [Guilherme dos Santos Lacerda] | [RA : 3026104652] | [GitHub](https://github.com/guisantoo) |
 | [João Alexandre Zotta de Paula] | [RA : 3126103173] | [GitHub](https://github.com/) |
 | [Mateus Yaryd Garcez de Oliveira] | [RA : 3126100355] | [GitHub](https://github.com/mateusYaryd) |
 | [Ronald Guilherme] | [RA : ] | [GitHub](https://github.com/) |
-| [Thiago Veronezi Rogerio] | [RA : 3026101493] | [GitHub](https://github.com/) |
+| [Thiago Veronezi Rogerio] | [RA : 3026101493] | [GitHub](https://github.com/Thiagoveronezz?tab=repositories) |
 | [Willian Felicio Cavalcanti] | [RA : 3025203771] | [GitHub](https://github.com/willianfelicio) |
 
 ---
