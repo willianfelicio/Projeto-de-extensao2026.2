@@ -48,7 +48,7 @@ O projeto foi estruturado em uma arquitetura moderna de três camadas (*Full-Sta
 | :--- | :--- | :--- |
 | [Gabriel Rodrigues] | [RA : ] | [GitHub](https://github.com/) |
 | [Gabriela] | [RA : ] | [GitHub](https://github.com/) |
-| [Guilherme] | [RA : ] | [GitHub](https://github.com/) |
+| [Guilherme dos Santos Lacerda] | [RA : 3026104652] | [GitHub](https://github.com/) |
 | [João Alexandre Zotta de Paula] | [RA : 3126103173] | [GitHub](https://github.com/) |
 | [Mateus Yaryd Garcez de Oliveira] | [RA : 3126100355] | [GitHub](https://github.com/) |
 | [Ronald Guilherme] | [RA : ] | [GitHub](https://github.com/) |
